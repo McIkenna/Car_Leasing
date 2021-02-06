@@ -59,7 +59,7 @@ final UserDetails userDetails = userDetailsService
         return new ResponseEntity<Customer>(customer, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{customerId}")
+    @GetMapping("/user/{customerId}")
     public Customer findCustomer(@PathVariable String customerId){
         return customerService.findCustomerById(customerId);
     }

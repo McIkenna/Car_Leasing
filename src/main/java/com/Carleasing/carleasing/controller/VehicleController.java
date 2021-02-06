@@ -41,7 +41,7 @@ public class VehicleController {
         return vehicleService.updateVehicle(file, vehicle);
     }
 
-    @GetMapping("/all")
+    @GetMapping("/user/all")
     public Iterable<Vehicle> getAllVehicle(){
         return vehicleService.findAll();
     }
