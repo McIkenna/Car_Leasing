@@ -9,5 +9,5 @@ public class CommonUtils {
     public static final String SECRET_KEY = "3NEg4jWEyVS/EYOu2ys0I4zvuB+6LtMRIt7VNAYN";
     public static final String BUCKET_NAME = "car-make-image";
     public static final String BUCKET_MODEL_NAME = "car-model-image";
-    public static final String SECRET = "secret";
+
 }

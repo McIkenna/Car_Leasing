@@ -16,32 +16,32 @@ public class VehicleController {
     @Autowired
     VehicleService vehicleService;
 
-    @PostMapping("/admin/{makeId}")
+    @PostMapping("/{makeId}")
     public Vehicle saveVehicle(@RequestParam(value = "file") MultipartFile file, Vehicle vehicle, @PathVariable String makeId){
         return vehicleService.save(file, vehicle, makeId);
     }
 
-    @GetMapping("/user/{makeId}")
+    @GetMapping("/{makeId}")
     public Iterable<Vehicle> findVehicle(@PathVariable String makeId){
         return vehicleService.findVehicle(makeId);
     }
 
-    @GetMapping("/user/{makeId}/{vehicleId}")
+    @GetMapping("/{makeId}/{vehicleId}")
     public Vehicle findVehicleByMakeId(@PathVariable String makeId, @PathVariable String vehicleId){
         return vehicleService.findVehicleByMakeId(makeId, vehicleId);
     }
 
-    @DeleteMapping("/admin/{vehicleId}")
+    @DeleteMapping("/{vehicleId}")
     public String deleteVehicle(@PathVariable String vehicleId){
         return vehicleService.deleteVehicle(vehicleId);
     }
 
-    @PutMapping("/admin")
+    @PutMapping("/{makeId}")
     public String updateVehicle(@RequestParam(value = "file") MultipartFile file,Vehicle vehicle){
         return vehicleService.updateVehicle(file, vehicle);
     }
 
-    @GetMapping("/user/all")
+    @GetMapping("/all")
     public Iterable<Vehicle> getAllVehicle(){
         return vehicleService.findAll();
     }

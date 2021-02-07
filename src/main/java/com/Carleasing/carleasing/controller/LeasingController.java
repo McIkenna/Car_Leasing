@@ -22,7 +22,7 @@ public class LeasingController {
     @Autowired
     private MapErrorService mapErrorService;
 
-    @PostMapping("/admin/{makeId}/{vehicleId}")
+    @PostMapping("/{makeId}/{vehicleId}")
     public ResponseEntity<?> saveOrder(@RequestBody Order order, @PathVariable String makeId, @PathVariable String vehicleId, BindingResult result){
         ResponseEntity<?> errorMap = mapErrorService.MapErrorService(result);
         if(errorMap != null) return errorMap;
@@ -30,17 +30,17 @@ public class LeasingController {
         return new ResponseEntity<Order>(ord, HttpStatus.CREATED);
     }
 
-    @GetMapping("/user/{leasingId}")
+    @GetMapping("/{leasingId}")
     public Order findOrder(@PathVariable String leasingId){
         return leasingService.findOrderById(leasingId);
     }
 
-    @DeleteMapping("/admin/{leasingId}")
+    @DeleteMapping("/{leasingId}")
     public String deleteOrder(@PathVariable String leasingId){
         return leasingService.deleteOrder(leasingId);
     }
 
-    @PutMapping("/admin/updateOrder")
+    @PutMapping("/updateOrder")
     public String updateOrder(@RequestBody Order order){
         return leasingService.updateOrder(order);
     }

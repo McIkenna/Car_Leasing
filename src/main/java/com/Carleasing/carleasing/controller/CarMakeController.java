@@ -19,17 +19,17 @@ public class CarMakeController {
     @Autowired
     CarMakeService carMakeService;
 
-    @PostMapping("/admin")
+    @PostMapping("")
     public CarMake saveCarMake(@RequestParam(value = "file") MultipartFile file, CarMake carMake){
         return carMakeService.save(file, carMake);
     }
 
-    @GetMapping("/user/{makeId}")
+    @GetMapping("/{makeId}")
     public CarMake findCarMake(@PathVariable String makeId){
         return carMakeService.findCarMake(makeId);
     }
 
-    @DeleteMapping("/admin/{makeId}")
+    @DeleteMapping("/{makeId}")
     public String deleteCarMake(@PathVariable String makeId){
         return carMakeService.deleteCarMake(makeId);
     }
@@ -39,7 +39,7 @@ public class CarMakeController {
         return carMakeService.updateCarMake(file, carMake);
     }
 
-    @GetMapping("/user/all")
+    @GetMapping("/all")
     public Iterable<CarMake> getAllCarMake(){
         return carMakeService.findAll();
     }
