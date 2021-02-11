@@ -34,7 +34,7 @@ public class CarMakeController {
         return carMakeService.deleteCarMake(makeId);
     }
 
-    @PutMapping("/admin")
+    @PutMapping("")
     public String updateCarMake(@RequestParam(value = "file") MultipartFile file, CarMake carMake){
         return carMakeService.updateCarMake(file, carMake);
     }

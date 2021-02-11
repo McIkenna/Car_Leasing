@@ -31,14 +31,14 @@ public class VehicleController {
         return vehicleService.findVehicleByMakeId(makeId, vehicleId);
     }
 
-    @DeleteMapping("/{vehicleId}")
-    public String deleteVehicle(@PathVariable String vehicleId){
-        return vehicleService.deleteVehicle(vehicleId);
+    @DeleteMapping("/{makeId}/{vehicleId}")
+    public String deleteVehicle(@PathVariable String makeId, @PathVariable String vehicleId){
+        return vehicleService.deleteVehicle(makeId,vehicleId);
     }
 
-    @PutMapping("/{makeId}")
-    public String updateVehicle(@RequestParam(value = "file") MultipartFile file,Vehicle vehicle){
-        return vehicleService.updateVehicle(file, vehicle);
+    @PutMapping("/{makeId}/{vehicleId}")
+    public String updateVehicle(@RequestParam(value = "file") MultipartFile file,Vehicle vehicle, @PathVariable String makeId, @PathVariable String vehicleId){
+        return vehicleService.updateVehicle(file, vehicle, makeId, vehicleId);
     }
 
     @GetMapping("/all")

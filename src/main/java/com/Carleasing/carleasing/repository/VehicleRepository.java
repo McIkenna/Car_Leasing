@@ -13,8 +13,8 @@ public interface VehicleRepository{
     List<Vehicle> findVehicle(String makeId);
 
     Vehicle findVehicleByMakeId(String makeId, String vehicleId);
-    String deleteVehicle(String vehicleId);
-    String updateVehicle(MultipartFile multipartFile, Vehicle vehicle);
+    String deleteVehicle(String makeId, String vehicleId);
+    String updateVehicle(MultipartFile multipartFile, Vehicle vehicle,String makeId, String vehicleId);
 
     Iterable<Vehicle> findAll();
 }

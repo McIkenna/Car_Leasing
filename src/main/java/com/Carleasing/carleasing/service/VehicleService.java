@@ -61,6 +61,7 @@ public class VehicleService implements VehicleRepository {
             mapper.save(vehicle);
         s3Client.putObject(
                 new PutObjectRequest(CommonUtils.BUCKET_MODEL_NAME, fileName , file));
+
         }/*catch (Exception e) {
 			e.printStackTrace();
 		}*/
@@ -106,9 +107,9 @@ public class VehicleService implements VehicleRepository {
         }
     */
     @Override
-    public String deleteVehicle(String vehicleId) {
+    public String deleteVehicle(String makeId, String vehicleId) {
         try {
-            Vehicle veh = mapper.load(Vehicle.class, vehicleId);
+            Vehicle veh = mapper.load(Vehicle.class,makeId,vehicleId);
             mapper.delete(veh);
             String fileName = veh.getCarImage().substring(veh.getCarImage().lastIndexOf("/") + 1);
             s3Client.deleteObject(new DeleteObjectRequest(CommonUtils.BUCKET_MODEL_NAME + "/", fileName));
@@ -119,15 +120,18 @@ public class VehicleService implements VehicleRepository {
     }
 
     @Override
-    public String updateVehicle(MultipartFile multipartFile, Vehicle vehicle) {
+    public String updateVehicle(MultipartFile multipartFile, Vehicle vehicle, String makeId, String vehicleId) {
         try{
             File file = convertMultiPartToFile(multipartFile);
             String fileName = generateFileName(multipartFile);
             String fileUrl = CommonUtils.S3SERVICE_ENDPOINT + "/" + CommonUtils.BUCKET_MODEL_NAME + "/" + fileName;
+
+            vehicle.setVehicleId(vehicleId);
+            vehicle.setMakeId(makeId);
             vehicle.setCarImage(fileUrl);
             mapper.save(vehicle, buildExpression(vehicle));
             s3Client.putObject(
-                    new PutObjectRequest(CommonUtils.BUCKET_NAME, fileName , file));
+                    new PutObjectRequest(CommonUtils.BUCKET_MODEL_NAME, fileName , file));
             return "record Updated";
 
         }
